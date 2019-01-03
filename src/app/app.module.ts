@@ -21,13 +21,11 @@ import { SafePipe } from './pipes/safe-pipe';
 import { GetLoctaionService } from './services/get-location.service';
 import { RegistraionLogInPageComponent } from './page-template/registraion-log-in-page/registraion-log-in-page.component';
 import { Call106Component } from './page-template/call-106/call-106.component';
-import { FastMastComponent } from './page-template/fast-mast/fast-mast.component';
 import { ChangePhoneNumberComponent } from './page-template/change-phone-number/change-phone-number.component';
 import { TestCameraComponent } from './page-template/test-camera/test-camera.component';
 import { ManagerSpeechComponent } from './page-template/manager-speech/manager-speech.component';
 import { CityContentComponent } from './page-template/city-content/city-content.component';
 import { UserSideMenuComponent } from './components/user-side-menu/user-side-menu.component';
-import { MidotArnonaComponent } from './page-template/midot-arnona/midot-arnona.component';
 import { UserServicesPageComponent } from './user-pages/user-services-page/user-services-page.component';
 import { UserFormsPageComponent } from './user-pages/user-forms-page/user-forms-page.component';
 import { UserFormPageComponent } from './user-pages/user-form-page/user-form-page.component';
@@ -121,13 +119,11 @@ var messagesRu;
     SearchFilterPipe,
     RegistraionLogInPageComponent, 
     Call106Component,
-    FastMastComponent,   
     ChangePhoneNumberComponent, 
     TestCameraComponent,
     ManagerSpeechComponent,
     CityContentComponent,
     UserSideMenuComponent,
-    MidotArnonaComponent,
     UserServicesPageComponent,
     UserFormsPageComponent,
     UserFormPageComponent,

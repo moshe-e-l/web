@@ -41,7 +41,8 @@ export class UserFastMastPageComponent implements OnInit {
   fast_Mast:fast_Mast_blockModel= new fast_Mast_blockModel();  
 
 
-   constructor(private route: ActivatedRoute,private router: Router,public commonService: CommonService,private jsonService: GetJsonService) {
+   constructor(private route: ActivatedRoute,private router: Router,
+    public commonService: CommonService,private jsonService: GetJsonService) {
    this.isMobileUser= this.commonService.getIsMobileUser(); 
    this.route.params.subscribe((params: Params) => {    
    this.currentCityID= params['city'];
@@ -63,77 +64,83 @@ export class UserFastMastPageComponent implements OnInit {
 
    // ********bolck method*******
 
-GetcityBlockChildFromUmbraco(cityId: string, type:string) {
-  this.dataToSend = new Array<ActionInputParams>()
-  this.params = new Array<InputParams>();
-  this.actionName = '3e290245-6cf4-4ffb-9813-905a7dd11d57';
+   GetcityBlockChildFromUmbraco(cityId: string, type:string) {
+    this.dataToSend = new Array<ActionInputParams>()
+    this.params = new Array<InputParams>();
+    this.actionName = '3e290245-6cf4-4ffb-9813-905a7dd11d57';
+    
+    this.param = new InputParams("city",cityId);
+    this.params.push(this.param);
+    this.param = new InputParams("type",type); //parent or city
+    this.params.push(this.param);
+    this.param = new InputParams("web-or-app","WEB");
+    this.params.push(this.param);
   
-  this.param = new InputParams("city",cityId);
-  this.params.push(this.param);
-  this.param = new InputParams("type", type);//parent or city
-  this.params.push(this.param);
-
-  this.singleDataObj = { ActionName: this.actionName, InputParamsCollection: this.params }
-  this.dataToSend.push(this.singleDataObj);
-  this.FullActionInputParams = new FullActionInputParams(this.dataToSend, 'MastApi_WebAdmin','DAL.Umbraco.BLumbraco/');
-  this.jsonService.sendData(this.FullActionInputParams).subscribe(res => {
-    this.setBlockLists(res);    
-  }, err => {}
-    //alert(err)
-  );    
-}
-
-
-setBlockLists(blocks)
-{    
-  this.parent_blocks= new Array();
-  this.external_blocks= new Array();
-  this.intetnal_blocks= new Array();   
-  this.content_page_blocks= new Array();
+    this.singleDataObj = { ActionName: this.actionName, InputParamsCollection: this.params }
+    this.dataToSend.push(this.singleDataObj);
+    this.FullActionInputParams = new FullActionInputParams(this.dataToSend, 'MastApi_WebAdmin','DAL.Umbraco.BLumbraco/');
+    this.jsonService.sendData(this.FullActionInputParams).subscribe(res => {
+      this.setBlockLists(res);    
+    }, err => {}
+      //alert(err)
+    );    
+  }
   
-  blocks.forEach(element => {
-  let jsonResult = JSON.parse(element.Value);   
-  if(element.Name== 'parent_blocks')
-  {
-    if(jsonResult.hideInApp != 1)     
-    {this.parent_blocks.push(jsonResult);}     
-  }
-  if(element.Name== 'external_block')
-  {
-    if(jsonResult.hide != 1)     
-    {this.external_blocks.push(jsonResult);}
-  }
-  if(element.Name== 'internal_block')
-  {
-    if(jsonResult.hide != 1)     
-    {this.intetnal_blocks.push(jsonResult);}
-
-  }
-  if(element.Name== 'content_page_block')
-  {
-    this.content_page_blocks.push(jsonResult);  
-  }
-  if(element.Name== 'fast_mast_block')
-  { 
-    this.fast_Mast= new fast_Mast_blockModel();
-    this.fast_Mast.id = jsonResult.id;
-    this.fast_Mast.location = jsonResult.location;
+  setBlockLists(blocks)
+  {    
+    this.parent_blocks= new Array();
+    this.external_blocks= new Array();
+    this.intetnal_blocks= new Array();   
+    this.content_page_blocks= new Array();
+    
+    blocks.forEach(element => {
+    let jsonResult = JSON.parse(element.Value);   
+    if(element.Name== 'parent_blocks')
+    {
+      if(jsonResult.hideInApp != 1)     
+      {this.parent_blocks.push(jsonResult);}     
+    }
+    if(element.Name== 'external_block')
+    {
+      if(jsonResult.hide != 1)     
+      {this.external_blocks.push(jsonResult);}
+    }
+    if(element.Name== 'internal_block')
+    {
+      if(jsonResult.hide != 1)     
+      {this.intetnal_blocks.push(jsonResult);}
+  
+    }
+    if(element.Name== 'content_page_block')
+    {
+      this.content_page_blocks.push(jsonResult);  
+    }
+    if(element.Name== 'fast_mast_block')
+    { 
+      this.fast_Mast= new fast_Mast_blockModel();
+      this.fast_Mast.id = jsonResult.id;
+      this.fast_Mast.location = jsonResult.location;
+    }
+      
+    });
+  
   }
     
-  });
-
-}
-external_blockFun(ex)
-  {
-    if(ex.openLinkInNewWindow=="1")
-    { 
-      window.open(ex.link+ "&k="+ this.fast_Mast.code);
-    }
-    else
+    external_blockFun(ex)
     {
-      location.href= ex.link + "&k="+ this.fast_Mast.code;
+      if(ex.openLinkInNewWindow=="1")
+      { 
+        window.open(ex.link+ "&k="+ this.fast_Mast.code);
+      }
+      else
+      {
+        location.href= ex.link+ "&k="+ this.fast_Mast.code;
+      }
     }
-  }
+    internal_blockFun(link)
+    {
+      this.router.navigate([link+"/"+this.fast_Mast.code])
+    }
 
 //////////////////end///////////////////////////
 

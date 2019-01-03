@@ -1,18 +1,21 @@
 <div class="lets_start">
   <h1>{{'services'| lang}}</h1>
 </div>
+<app-regestrition-log-in *ngIf="!commonService.isLogInUser"></app-regestrition-log-in>
 
-<div class="container_user_div">
+<div [ngClass]="commonService.isLogInUser ? 'container_user_div' : ''">
 <section class="user-content">
   <div class="fh8co-main container-fluid">
     <div class="row">
 
     
-      <app-user-side-menu></app-user-side-menu>
+      <app-user-side-menu *ngIf="commonService.isLogInUser"></app-user-side-menu>
       
-        <div id="tab-2" class="col-md-9 col-sm-9 padding-0 tab-content current">
-          <div class="box-wrapper">
-                  <div class="col-md-4 col-sm-4 col-xs-6 col-xxs-6 padding-0 pull-right border-right border-bottom d-none">
+      <div id="tab-2" [ngClass]="commonService.isLogInUser ? 'col-md-9 col-sm-9 tab-content current' : 'col-md-12 col-sm-12'" class="padding-0">
+        <div class="box-wrapper">
+               
+          <div [ngClass]="commonService.isLogInUser ? 'col-md-4 col-sm-4 col-xs-6 col-xxs-6 d-none' : 'col-md-3 col-sm-3 col-xs-6 col-xxs-6 '"
+          class="padding-0 border-right border-bottom pull-right ">
                           <div class="img-grid">
                                   <img [src]="commonService.cityModel.logo" alt="{{commonService.cityModel.name}} לוגו" title="{{commonService.cityModel.name}} לוגו" class="img-responsive" style="max-height: 80%;">
                                   <span style="font-size:22px;" id="stamForClick" class="fh5co-meta">{{'whichServicesYouWantToGet'| lang}}</span>
@@ -40,36 +43,39 @@
                 </div>
        -->
                 <!-- external_blocks -->
-                <div *ngFor="let external of external_blocks" [ngStyle]="{'order': external.location }" class="col-md-4 col-sm-4 col-xs-6 col-xxs-6 pull-right padding-0 border-right border-bottom cursorPointer ">
-                  <div class="img-grid">
-                    <img [src]="external.logo" title="{{external.caption}}" alt="{{external.caption}}" class="img-responsive">
-                    <span class="fh5co-meta">{{external.caption}}</span>
-                    <a href="javascript:void(0)" (click)="external_blockFun(external)" rel="nofollow" tabindex="40" [target]="external.openLinkInNewWindow== 1 ? '_blank' : ''" class="transition"
-                      [ngStyle]="{'background-image': 'url(' + external.background + ')'}">
-                      <div>
-                        <h2 class="fh5co-title">
-                          <img [src]="external.background_logo" title="{{external.caption}}" alt="{{external.caption}}" class="img-responsive">
-                        </h2>
-                        <span class="fh5co-meta">{{external.caption}}</span>
-                      </div>
-                    </a>
-                  </div>
+              <div *ngFor="let external of external_blocks" [ngStyle]="{'order': external.location }" [ngClass]="commonService.isLogInUser ? 'col-md-4 col-sm-4 col-xs-6 col-xxs-6 ' : 'col-md-3 col-sm-3 col-xs-6 col-xxs-6'"
+                class="pull-right padding-0 border-right border-bottom cursorPointer">
+                <div class="img-grid">
+                  <img [src]="external.logo" alt="{{parent.caption}}" title="{{parent.caption}}" class="img-responsive">
+                  <span class="fh5co-meta">{{external.caption}}</span>
+                  <a href="javascript:void(0)" (click)="external_blockFun(external)" rel="nofollow" tabindex="40" class="transition"
+                  [ngStyle]="{'background-image': 'url(' + external.background + ')'}">
+                    <div>
+                      <h2 class="fh5co-title">
+                        <img [src]="external.background_logo" title="{{parent.caption}}" alt="{{parent.caption}}" class="img-responsive">
+                      </h2>
+                      <span class="fh5co-meta">{{external.caption}}</span>
+                    </div>
+                  </a>
+                </div>
                 </div>
       
                 <!-- internal -->
-                <div *ngFor="let internal of intetnal_blocks" [ngStyle]="{'order': internal.location }" class="col-md-4 col-sm-4 col-xs-6 col-xxs-6 pull-right padding-0 border-right border-bottom cursorPointer ">
-                  <div class="img-grid">
-                    <img [src]= "internal.logo" title="{{internal.caption}}" alt="{{internal.caption}}" class="img-responsive">
-                    <span class="fh5co-meta">{{internal.caption}}</span>
-                    <a href="javascript:void(0)" [routerLink]="internal.link_loged"  [ngStyle]="{'background-image': 'url(' + internal.background_logo + ')'}" rel="nofollow" class="transition">
-                      <div>
-                        <h2 class="fh5co-title">
-                          <img [src]= "internal.background" title="{{internal.caption}}" alt="{{internal.caption}}" class="img-responsive">
-                        </h2>
-                        <span class="fh5co-meta">{{internal.caption}}</span>
-                      </div>
-                    </a>
-                  </div>
+                <div *ngFor="let internal of intetnal_blocks" [ngStyle]="{'order': internal.location }" [ngClass]="commonService.isLogInUser ? 'col-md-4 col-sm-4 col-xs-6 col-xxs-6 ' : 'col-md-3 col-sm-3 col-xs-6 col-xxs-6'"
+                class="pull-right padding-0 border-right border-bottom cursorPointer">
+                <div class="img-grid">
+                  <img [src]= "internal.logo"  class="img-responsive">
+                  <span class="fh5co-meta">{{internal.caption}}</span>
+                  <a href="javascript:void(0)" (click)="internal_blockFun(internal.link_loged)" [ngStyle]="{'background-image': 'url(' + internal.background + ')'}"  rel="nofollow" class="transition">
+                    <!--  [routerLink]="[internal.link,'/', fast_Mast.code]" -->
+                    <div>
+                      <h2 class="fh5co-title">
+                        <img [src]= "internal.background_logo"  class="img-responsive">
+                      </h2>
+                      <span class="fh5co-meta">{{internal.caption}}</span>
+                    </div>
+                  </a>
+                </div>
                 </div>
       
                  <!-- content -->

@@ -6,12 +6,10 @@ import { ContentComponent } from '../../page-template/content/content.component'
 import { ServicesComponent } from '../../page-template/services/services.component';
 import { RegistraionLogInPageComponent } from '../../page-template/registraion-log-in-page/registraion-log-in-page.component';
 import { Call106Component } from '../../page-template/call-106/call-106.component';
-import { FastMastComponent } from '../../page-template/fast-mast/fast-mast.component';
 import { ChangePhoneNumberComponent } from '../../page-template/change-phone-number/change-phone-number.component';
 import { TestCameraComponent } from '../../page-template/test-camera/test-camera.component';
 import { ManagerSpeechComponent } from '../../page-template/manager-speech/manager-speech.component';
 import { CityContentComponent } from '../../page-template/city-content/city-content.component';
-import { MidotArnonaComponent } from '../../page-template/midot-arnona/midot-arnona.component';
 import { UserServicesPageComponent } from '../../user-pages/user-services-page/user-services-page.component';
 import { UserFormPageComponent } from '../../user-pages/user-form-page/user-form-page.component';
 import { UserFormsPageComponent } from '../../user-pages/user-forms-page/user-forms-page.component';
@@ -69,8 +67,8 @@ import { LifeBeltComponent } from '../../page-template/life-belt/life-belt.compo
     { path: 'version-info', component: TestCameraComponent },
     { path: ':city/city-content/:id', component: CityContentComponent }, // אין באמת צורך במזהה רשות, אבל כבר הרבה לינקים נכתבו עם המזהה רשות
     { path: 'city-content/:id', component: CityContentComponent },
-    { path: ':city/midot-arnona/:code', component: MidotArnonaComponent },
-    { path: ':city/fast-mast/:code/:parent', component: FastMastComponent },
+    { path: ':city/midot-arnona/:code', component: UserMidotArnonaPageComponent },
+    { path: ':city/fast-mast/:code/:parent', component: UserFastMastPageComponent },
     { path: 'success-bill-to-mail', component: SuccessBillToMaiLComponent },
     { path: ':city/contact-city', component: UserContactCityPageComponent },
     { path: ':city/bill-in-mail', component: BillInMailComponent },
@@ -116,7 +114,7 @@ import { LifeBeltComponent } from '../../page-template/life-belt/life-belt.compo
     { path: 'user/:city/summer-camp', component: UserSummerCampPageComponent }, 
     { path: 'user/:city/summer-camp/:lang', component: UserSummerCampPageComponent }, 
     { path: 'user/:city/afternoon/:child', component: UserAfternoonKidsPaymentComponent }, 
-    { path: 'user/:city/midot-arnona', component: UserMidotArnonaPageComponent },
+    { path: 'user/:city/midot-arnona/:code', component: UserMidotArnonaPageComponent },
     { path: 'user/:city/my-opend', component: UserMyOpendPageComponent },
     { path: 'user/:city/water-details', component: UserWaterDetailsPageComponent },
     { path: 'user/:city/parent-block', component: UserWaterDetailsPageComponent },

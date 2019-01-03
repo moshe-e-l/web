@@ -1,16 +1,17 @@
 <div class="lets_start">
   <h1>{{'services'| lang}}</h1>
 </div>
+<app-regestrition-log-in *ngIf="!commonService.isLogInUser"></app-regestrition-log-in>
 
-<div class="container_user_div">
+<div [ngClass]="commonService.isLogInUser ? 'container_user_div' : ''">
   <section class="user-content">
     <div class="fh8co-main container-fluid">
       <div class="row">     
-        <app-user-side-menu></app-user-side-menu>
+        <app-user-side-menu *ngIf="commonService.isLogInUser"></app-user-side-menu>
 
 
 
-        <div id="tab-2" class="col-md-9 col-sm-9 padding-0 tab-content current">
+        <div id="tab-2" [ngClass]="commonService.isLogInUser ? 'col-md-9 col-sm-9 tab-content current' : 'col-md-12 col-sm-12'" class="padding-0">
   
           <div class="box-wrapper">
 
@@ -31,36 +32,20 @@
                    <table class="table table-striped refrence_table">
 
                        <thead>
-
                          <tr>
-
-                            <th scope="col" id="tbl5">#</th>
-
-                         
-
-                            <th scope="col" id="tbl7">שם</th>
-
+                            <th scope="col" id="tbl5">#</th>   
+                            <th scope="col" id="tbl7">מספר נכס</th>
                             <th scope="col" id="tbl9">צפיה</th>
-
                          </tr>
-
                       </thead>
 
                       <tbody>
-
                          <tr *ngFor="let arnona of arnonaImageList" >
-
                             <th scope="col" id="tbl13" headers="tbl5">1</th>
-
                             <td scope="row" headers="tbl7 tbl13">{{arnona.assetNumber}}</td>
-
                             <td scope="row" headers="tbl9 tbl13" class="refrenceSection"><a (click)="showPdf(arnona.imageSrc)" class="imgText cursorPointer"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></a> 
-                            
-                            </td>
-
-                         </tr>
-
-                           
+                          </td>
+                         </tr>                           
                       </tbody>
 
                    </table>
