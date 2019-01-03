@@ -64,7 +64,7 @@ export class UserServicesPageComponent implements OnInit, AfterViewInit {
    ngAfterViewInit(){
         
    }
-
+   //////
   // ********bolck method*******
 
   GetcityBlockChildFromUmbraco(cityId: string, type: string) {
