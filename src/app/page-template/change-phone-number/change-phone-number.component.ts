@@ -7,7 +7,7 @@ import {Location} from '@angular/common';
 import { Meta } from '@angular/platform-browser';
 import { CommonService } from '../../services/common.service';
 import { ValidationService } from '../../services/validation.service';
-import { ReCaptchaDirective } from '../../directives/recaptha.directive';
+import { ReCaptchaDirective } from '../../modules/dynamic-form/directives/recaptha.directive';
 
 
 declare function allowOnlyNumbers(): any;

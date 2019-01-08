@@ -1,0 +1,24 @@
+<div  [class]="question.elementWraperClass + ' ' + 'question-wraper'"  [formGroup]="form">
+  <div [ngSwitch]="question.controlType">  
+
+   <div><label *ngSwitchCase="'textbox'" >{{question.label}}</label></div>     
+    <!-- [placeholder]="question.label" -->
+    <input *ngSwitchCase="'textbox'" [class]="question.elementClass" [formControlName]="question.key"
+     [id]="question.key" [type]="question.type">
+
+    <label *ngSwitchCase="'dropdown'" [attr.for]="question.key">{{question.label}}</label>  
+    <select [id]="question.key" *ngSwitchCase="'dropdown'" [formControlName]="question.key" [class]="question.elementClass">
+      <option value="" disabled selected>בחר</option>
+      <option *ngFor="let opt of question.options" [value]="opt.key">{{opt.value}}</option>
+    </select>
+   
+    <input #ck *ngSwitchCase="'checkbox'" [formControlName]="question.key" [id]="question.key" 
+    [type]="question.type" (change)="form.controls[this.question.key].value = ck.checked" 
+     [(ngModel)]="form.controls[this.question.key].value" [class]="question.elementClass">
+    <label *ngSwitchCase="'checkbox'" [attr.for]="question.key">{{question.label}}</label>  
+  </div>
+  <!-- [attr.checked]="form.controls[this.question.key].value" -->
+ <div *ngIf="form.controls[this.question.key].touched">   
+    <div class="errorMessage validationMesseg" *ngIf="!isValid">{{question.validationMsg}}</div>
+ </div>
+</div>

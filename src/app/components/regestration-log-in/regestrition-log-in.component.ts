@@ -7,7 +7,7 @@ import { CommonService } from '../../services/common.service';
 import { ValidationService } from '../../services/validation.service';
 import { CityDropDownComponent } from '../city-drop-down/city-drop-down.component';
 import { GetUserIpService } from '../../services/get-user-ip.service';
-import { ReCaptchaDirective } from '../../directives/recaptha.directive';
+import { ReCaptchaDirective } from '../../modules/dynamic-form/directives/recaptha.directive';
 
 declare function allowOnlyNumbers(): any;
 declare var grecaptcha: any;

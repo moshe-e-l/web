@@ -1,0 +1,22 @@
+<div class="section-wraper">
+<div class="form-wraper">
+  <div class="title">
+    <p class="big">
+      הזינו את קוד ה FAST MAST! שלכם
+    </p>
+    <p class="small">
+      נא הזינו את קוד ה FAST MAST! האישי שלכם, כפי שמופיע בשובר התשלום האחרון שקיבלתם
+    </p>
+  </div>
+  <br>
+  <div class="input-lable">
+    קוד !FAST MAST  *
+  </div>
+  <input type="text" [(ngModel)]="fastMastService.code" placeholder="הזינו קוד !FAST MAST">
+  <div *ngIf="isIncorrectCode" class="validationMesseg">קוד אינו נכון, אנא נסו שנית.</div>
+</div>
+    <div class="buttons step-buttons text-left">
+        <a (click)="GetUserDetailByFastMastCode()" class="btn submit" href="javascript:void(0)"
+           id="continueBtn">המשך</a>
+    </div>
+</div>

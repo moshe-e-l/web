@@ -38,7 +38,7 @@
             
             <label class="label_accessibility" for="lastname">* {{'Number'| lang}}</label>
 
-            <input required type="text" id="strNum" [attr.disabled]="isSetAddressByGPS?'':null" 
+            <input required type="text" id="strNum" 
               class="text_input2" (focusout)="validStreetNumberFun()" [(ngModel)]="StreetNumber" placeholder="*  {{'Number'| lang}}">
 
             <label class="label_accessibility" for="number">* {{'street'| lang}}</label>
@@ -48,7 +48,7 @@
             <form style="display: inline;">
                 
               <div>
-                <input required id="streetName" class="streetName" style="width: 72%;" [(ngModel)]="StreetName" [attr.disabled]="isSetAddressByGPS?'':null" mdInput placeholder="   * רחוב"
+                <input required id="streetName" class="streetName" style="width: 72%;" [(ngModel)]="StreetName"  mdInput placeholder="   * רחוב"
                   aria-label="State" (focusout)="validStreetNameFun()" [mdAutocomplete]="auto" [formControl]="stateCtrl">
               </div>
 
@@ -91,7 +91,7 @@
                 </label>
                 <input class="fileUpload" (change)="uploadFile($event)" id="uploadImg" type="file" value="Choose a file" accept="image/jpeg, image/png"
                   name="profilepic[]" style="display:none;" multiple>
-                <p *ngIf="maxFileValid" class="max_upload">מקסימום 2 קבצים מותרים</p>
+                <p *ngIf="fileValidation" class="max_upload">{{fileValidation}}</p>
               </div>
             </div>
 
@@ -111,7 +111,6 @@
 
       </div>
 
-      <!-- <app-dynamic-form #form [GroupId]="1" [isSecondUse]="false" (getFormData)="getUserFormData($event)"></app-dynamic-form> -->
 
       <div class="form_section_1 box_spacing" style="display: none;">
         <div class="col-md-12 col-sm-12">

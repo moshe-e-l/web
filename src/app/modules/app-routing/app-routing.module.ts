@@ -46,6 +46,7 @@ import { MagicCitizensComponent } from '../../page-template/magic-citizens/magic
 import { SearchEngineResultsComponent } from '../../components/search-engine-results/search-engine-results.component';
 import { MyAppointmentsComponent } from '../../user-pages/user-appointments-page/my-appointments/my-appointments.component';
 import { LifeBeltComponent } from '../../page-template/life-belt/life-belt.component';
+import { UserFastMastGeneralComponent } from '../../user-pages/user-fast-mast-details/user-fast-mast-general/user-fast-mast-general.component';
 
 
  const routes: Routes = [    
@@ -58,6 +59,7 @@ import { LifeBeltComponent } from '../../page-template/life-belt/life-belt.compo
     { path: ':city/manager-speech', component: ManagerSpeechComponent },
     { path: ':city/payment', component: UserPaymentPageComponent },
     { path: ':city/payment/:child', component: UserPaymentPageComponent },
+    { path: ':city/payment/QR_TAG/:stub/:payerId', component: UserPaymentPageComponent },
     { path: ':city/form/:pageUid', component: UserFormPageComponent }, 
     { path: ':city/forms', component: UserFormsPageComponent }, 
     { path: 'registraion-log-in-page', component: RegistraionLogInPageComponent },
@@ -86,6 +88,7 @@ import { LifeBeltComponent } from '../../page-template/life-belt/life-belt.compo
     { path: '37/magic-citizens', component: MagicCitizensComponent },  
     { path: 'search-engine/:query', component: SearchEngineResultsComponent },  
     { path: ':city/search-engine/:query', component: SearchEngineResultsComponent },  
+    { path: ':city/fast-mast-details', component: UserFastMastGeneralComponent },  
 
               /////user-pages////
     { path: 'user/:city/services', component: UserServicesPageComponent },

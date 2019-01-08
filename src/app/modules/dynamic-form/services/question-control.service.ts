@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FormControl, FormGroup, Validators, AbstractControl, ValidatorFn } from '@angular/forms';
-import { QuestionBase, TextboxQuestion } from '../../Models/question-base';
-import { ValidationService } from './validation.service';
 import { FormValidationService } from './form-validation.service';
+import { QuestionBase, TextboxQuestion } from '../models/question-base';
 
 @Injectable()
 export class QuestionControlService {
@@ -42,14 +41,13 @@ function validation(valid: FormValidationService, question: QuestionBase<any>): 
     let isNotValid;
     if (question.required){
       isNotValid = valid.validEmptyFiled(control.value, question.controlType);
-
     if (question.key.toLowerCase().includes("tz") && !isNotValid)
       isNotValid = valid.validTZFun(control.value);
     if (question.key.toLowerCase().includes("phone") && !isNotValid)
         isNotValid = valid.validPhoneFun(control.value);
     if (question.key.toLowerCase().includes("email") && !isNotValid)
         isNotValid = valid.validEmailFun(control.value);   
-   
+ 
    
     if (question instanceof TextboxQuestion) {
       let tb = question as TextboxQuestion;
@@ -60,11 +58,9 @@ function validation(valid: FormValidationService, question: QuestionBase<any>): 
     }
   }
 
-
-
     if (isNotValid) {
-      question.validationMsg = question.label + " " + isNotValid;
-      return { 'ageRange': true };
+      question.validationMsg = question.label.replace("*", "") + " " + isNotValid;
+      return { 'generalValidation': true };
     }
     return null;
   };

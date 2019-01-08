@@ -1,0 +1,64 @@
+<div class="lets_start">
+
+  <h2>{{'services'| lang}}!</h2>
+</div>
+<!--ADDITION MIKI ADDED FOR USER AREA   CAN BE REPASTED  -->
+
+<app-regestrition-log-in></app-regestrition-log-in>
+
+<section class="user-content servicesUserContent">
+  <div class="fh8co-main container-fluid">
+    <div class="row">
+      <div class="">
+      </div>
+      <div id="tab-2" class="col-md-12 col-sm-12 padding-0">
+        <div class="box-wrapper">
+          <div class="col-md-3 col-sm-3 col-xs-6 col-xxs-6 padding-0 border-right border-bottom pull-right d-none">
+            <div class="img-grid">
+              <img class="img-responsive" alt="{{commonService.cityModel.name}}" title="{{commonService.cityModel.name}}" src="{{commonService.cityModel.logo}}">
+              <h1 class="fh5co-meta" style="font-size:22px;">{{'whichServicesYouWantToGet'| lang}}</h1>
+            
+            </div>
+          </div>
+        
+          <!-- external_blocks -->
+          <div *ngFor="let external of external_blocks" [ngStyle]="{'order': external.location }" class="col-md-3 col-sm-3 col-xs-6 col-xxs-6 padding-0 border-right border-bottom pull-right cursorPointer">
+            <div class="img-grid">
+              <img [src]="external.logo" alt="{{parent.caption}}" title="{{parent.caption}}" class="img-responsive">
+              <span class="fh5co-meta">{{external.caption}}</span>
+              <a href="javascript:void(0)" (click)="external_blockFun(external)" rel="nofollow" tabindex="40" class="transition"
+              [ngStyle]="{'background-image': 'url(' + external.background + ')'}">
+                <div>
+                  <h2 class="fh5co-title">
+                    <img [src]="external.background_logo" title="{{parent.caption}}" alt="{{parent.caption}}" class="img-responsive">
+                  </h2>
+                  <span class="fh5co-meta">{{external.caption}}</span>
+                </div>
+              </a>
+            </div>
+          </div>
+
+          <!-- internal -->
+          <div *ngFor="let internal of intetnal_blocks" [ngStyle]="{'order': internal.location }" class="col-md-3 col-sm-3 col-xs-6 col-xxs-6 padding-0 border-right border-bottom pull-right cursorPointer">
+            <div class="img-grid">
+              <img [src]= "internal.logo" title="{{parent.caption}}" alt="{{parent.caption}}" class="img-responsive">
+              <span class="fh5co-meta">{{internal.caption}}</span>
+              <a href="javascript:void(0)" (click)="internal_blockFun(internal.link_unloged)" [ngStyle]="{'background-image': 'url(' + internal.background + ')'}"  rel="nofollow" class="transition">
+                <!--  [routerLink]="[internal.link,'/', fast_Mast.code]" -->
+                <div>
+                  <h2 class="fh5co-title">
+                    <img [src]= "internal.background_logo" title="{{parent.caption}}" alt="{{parent.caption}}" class="img-responsive">
+                  </h2>
+                  <span class="fh5co-meta">{{internal.caption}}</span>
+                </div>
+              </a>
+            </div>
+          </div>
+       
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+</section>

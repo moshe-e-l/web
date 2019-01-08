@@ -1,0 +1,28 @@
+<div class="lets_start">
+    <h1>זימון תורים</h1>
+  </div>
+  
+  <app-regestrition-log-in *ngIf="!commonService.isLogInUser"></app-regestrition-log-in>
+  
+  <div class="container_user_div">
+    <section  [ngClass]="commonService.isLogInUser ? 'user-content' : 'content-bx'">
+      <div [ngClass]="commonService.isLogInUser ? 'fh8co-main container-fluid' : 'container' ">
+        <div class="row">     
+          <app-user-side-menu *ngIf="commonService.isLogInUser"></app-user-side-menu>
+  
+          <div id="tab-2" [ngClass]="commonService.isLogInUser ? 'col-md-9 col-sm-9' : 'col-md-12 col-sm-12'" class="padding-0 right_part table_part tab-content current">
+  
+          <div id="servicesAreaDiv" [ngSwitch]="fastMastService.activeStep">  
+            <app-fast-mast-code *ngSwitchCase="'code'"></app-fast-mast-code>
+            <app-fast-mast-details *ngSwitchCase="'details'"></app-fast-mast-details>
+            <app-fast-mast-arnona *ngSwitchCase="'arnona'"></app-fast-mast-arnona>
+          </div>
+  
+           </div>
+        </div>
+      </div>
+    </section>
+  </div>
+  
+     
+  

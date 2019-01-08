@@ -31,6 +31,7 @@ export class MainTemplateComponent implements AfterViewInit {
 
   popUpSubject : string;
   stopPopUpTimer:number = 3;
+  interval:any;
   constructor(public commonService: CommonService,private router: Router, 
       private jsonService: GetJsonService, private route: ActivatedRoute) {
       
@@ -40,22 +41,24 @@ export class MainTemplateComponent implements AfterViewInit {
 ngAfterViewInit(){ 
   setTimeout(() => {
     let referrer = document.referrer;
-    console.log(referrer)
-//    referrer = "234"
+    //console.log(referrer)
+    //referrer = "234"
     if(referrer != "" && !referrer.includes("google") 
     && !referrer.includes("mast") && !referrer.includes("localhost")
      && this.router.url != "/")
     this.popUpSubject = "firstMsg";  
-    var interval = setInterval(()=> { 
+    this.interval = setInterval(()=> { 
       this.stopPopUpTimer-- ;
-      if(this.stopPopUpTimer == 0)
-      {
-        clearInterval(interval);
-        this.popUpSubject = null;
-      }
+      if(this.stopPopUpTimer == 0)      
+         this.closePopup();      
     },1500);  
   }, 100);
  
+}
+
+closePopup(){
+  clearInterval(this.interval);
+  this.popUpSubject = null;
 }
  
   hamborgerScript() {

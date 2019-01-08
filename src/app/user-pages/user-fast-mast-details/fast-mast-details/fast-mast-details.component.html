@@ -1,0 +1,13 @@
+<div class="title">
+    <p class="big">
+       פרטים אישיים
+    </p>
+    <p class="small">
+      נא מלאו את פרטיכם
+    </p>
+</div>
+<div class="fast-mast-df">
+    <app-dynamic-form #form [GroupId]="4001" [isSecondUse]="false" 
+    [defaultValues]="defaultValues" (getFormData)="getUserFormData($event)">
+    </app-dynamic-form>
+</div>

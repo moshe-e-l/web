@@ -6,20 +6,34 @@
               <div class="form_2 new_form">
 
                 <h2 class="counter_number">אימות נכס</h2>
-                <p>
+
+                <!-- <p>
                     לאבטחת החשבון וצפייה בפרטים אישיים אנו זקוקים לביצוע אימות  של המשתמש .
                     אנא מלאו את מספר הנכס המופיע בשובר התקופתי שנשלח אליכם .
                     במידה ואין לכם גישה לשובר- תנו לנו לעזור לכם .
                     <a [routerLink]="'/user/'+currentCityID+'/life-belt'">לחצו לעזרה</a>
+                </p> -->
+                <p>
+                    לאבטחת החשבון וצפייה בפרטים אישיים  אנו זקוקים לביצוע אימות של פרטי המשתמש .
+                    אנא מלאו את מספר הנכס המופיע בחשבון התקופתי שנשלח אליכם .   
                 </p>
+                
+
                 <div class="form1">
                   <input [(ngModel)]="assetNumber"  class="asset_filed" (focusout)="validAssetNumberFun()" type="tel"
                     placeholder="* מספר נכס" name="assetNumber" >
                     <div *ngIf="isValidAssetNumberMesseg" id="alert_assetNumberReg" class="validationMesseg">{{isValidAssetNumberMesseg | lang }}</div>
-                    <div *ngIf="isAssetNotValid" class="validationMesseg error_filed">
+                 
+                    <!-- <div *ngIf="isAssetNotValid" class="validationMesseg error_filed">
                         {{'assetNumberErrorMesseg' | lang }}
                        <a [routerLink]="'/user/'+currentCityID+'/life-belt'">לחצו לעזרה</a>
-                      </div>
+                     </div> -->
+
+                     <div *ngIf="isAssetNotValid" class="validationMesseg error_filed">
+                         מספר הנכס שגוי.
+                        אנא מלאו מחדש                         
+                     </div>
+
                     <p style="margin-left: 25%;">
                         <a href="javascript:void(0)" (click)="insertAsset()" class="custom_sub_btn btn1" title="send">שלח</a>
                    </p>        

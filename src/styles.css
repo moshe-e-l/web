@@ -294,3 +294,78 @@ tbody tr td div span{
     }
   }
   .submitBtn:hover, .submitBtn:focus{background:#0000c5; color:#fff;}
+
+
+
+
+  /* dynamic form css */
+  .fast-mast-df{
+  margin-bottom: 100px;
+  }
+  .fast-mast-df .questions-wraper{
+    -webkit-column-count: 2; /* Chrome, Safari, Opera */
+    -moz-column-count: 2; /* Firefox */
+    column-count: 2;
+  }
+  .fast-mast-df .question-wraper{
+    width: 80%;
+  }
+.fast-mast-df input[type="text"]{
+    height: 50px;
+    width: 100%;
+    border: none;
+    border-bottom: 2px solid #0000c5;
+    border-top: 1px solid #0000c5;  
+}
+.fast-mast-df .disabled{
+    color: slategray; 
+}
+.fast-mast-df input[type="text"].disabled{
+    border-bottom: 2px solid slategray;
+    border-top: 1px solid slategray;  
+    pointer-events:none;
+    color: slategray;    
+    background-color: #edf0f3;
+  }
+.fast-mast-df input[type="text"].letter-spacing{
+    letter-spacing: 5px;
+}
+
+.fast-mast-df .out-columns{
+  -webkit-column-span: all; /* Chrome, Safari, Opera */
+  column-span: all;
+  margin-top: 5px;
+}
+.fast-mast-df .submit-wrapper{
+    border-top: 1px solid #0000c5;
+    margin-top: 10px;
+}
+.fast-mast-df .submit-wrapper button{
+    font-weight: bold;
+    float: left;
+    margin-top: 15px;
+    border: 1px solid #0000c6;
+    border-radius: 3px;
+    font-size: 16px;
+    cursor: pointer;
+    padding: 7px 40px;
+    margin-right: 15px;
+    background: #0000c6;
+    color: #fff;
+}
+.fast-mast-df .question-wraper label{
+    margin-top: 10px;
+    margin-bottom: 0px;
+    font-size: 15px;
+}
+@media(max-width: 425px){
+    .fast-mast-df .questions-wraper{
+        -webkit-column-count: 1; /* Chrome, Safari, Opera */
+        -moz-column-count: 1; /* Firefox */
+        column-count: 1;
+      }
+      .fast-mast-df{
+        padding-right: 56px;
+      }
+}
+  /* end dynamic form css */

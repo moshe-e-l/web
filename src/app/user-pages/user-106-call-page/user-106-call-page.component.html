@@ -38,13 +38,13 @@
                      
                       <!-- <label class="label_accessibility" for="lastname">* {{'Number'| lang}}</label> -->
         
-                      <input required  type="text" id="strNum" [attr.disabled]="isSetAddressByGPS?'':null"  class="text_input2" (focusout)="validStreetNumberFun()" [(ngModel)]="StreetNumber" placeholder="*  {{'Number'| lang}}">
+                      <input required  type="text" id="strNum"  class="text_input2" (focusout)="validStreetNumberFun()" [(ngModel)]="StreetNumber" placeholder="*  {{'Number'| lang}}">
                   
                     
                     <form style="display: inline;">
                       
                         <div>
-                          <input id="streetName" required style="width: 72%;" class="streetName"  [(ngModel)]="StreetName" [attr.disabled]="isSetAddressByGPS?'':null"
+                          <input id="streetName" required style="width: 72%;" class="streetName"  [(ngModel)]="StreetName" 
                             mdInput placeholder="  * רחוב"  aria-label="State" (focusout)="validStreetNameFun()" 
                             [mdAutocomplete]="auto" [formControl]="stateCtrl">
                         </div>
@@ -83,31 +83,19 @@
                     <div class="socialmediaside2">
                         <label class="lableupload label100" for="uploadImg" >להוספת צילום של המפגע &nbsp;  <em class="fa fa-camera" aria-hidden="true"></em></label>
                         <input class="fileUpload" (change)="uploadFile($event)" id="uploadImg" type="file" value="Choose a file" accept="image/jpeg, image/png" name="profilepic[]" style="display:none;" multiple>
-                        <p *ngIf="maxFileValid"  class="max_upload">מקסימום 2 קבצים מותרים</p>
+                        <p *ngIf="fileValidation"  class="max_upload"> {{fileValidation}} </p>
                     </div>
                 </div>
-                
-        
-        
-        
-        
-        
-                <div class="meter_upload">
-                   
-                </div>
-        
+                        
+                <div class="meter_upload">                   
+                </div>        
                     <p>
                       <a href="" (click)="$event.preventDefault();sendHazardReportImage()" class="custom_sub_btn btn1 cursorPointer" title="send" style="margin-left:0px"> {{'OK'| lang}}</a>
-                    </p>
-        
-                  </div>
-        
-                </div>
-        
-              </div>
-        
-            </div>
-        
+                    </p>        
+                  </div>        
+                </div>        
+              </div>        
+            </div>        
           </div>
         
         

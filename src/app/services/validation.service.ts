@@ -2,7 +2,7 @@ import { Injectable, Inject } from '@angular/core';
 
 @Injectable()
 export class ValidationService {
-    
+
     //user
     validNameFun(item, name) {
         // first name
@@ -95,8 +95,7 @@ export class ValidationService {
         return false;
     }
 
-    validTZFun2()
-    {
+    validTZFun2() {
 
 
 
@@ -150,7 +149,7 @@ export class ValidationService {
 
         return res;
     }
-  // TODO 
+    // TODO 
     // להעביר את כל הבדיקות ברשימות לשימוש בפונקצייה הזו
     validItemInListFun(list, selectedItem, nameParam) {
         let res = null;
@@ -238,14 +237,13 @@ export class ValidationService {
         return res;
     }
 
-    validSevenLetters(item, name)
-    {
+    validSevenLetters(item, name) {
         if ($("." + name).hasClass("inputErrorToFocus")) { $("." + name).removeClass("inputErrorToFocus") }
         let res = null;
         if (item.length < 7) {
-            res = name + "MustSevenLetters" 
+            res = name + "MustSevenLetters"
         }
-       
+
         if (item == "" || item == undefined || item == null) {
             res = name + "isMustFiled";
         }
@@ -254,14 +252,13 @@ export class ValidationService {
         }
         return res;
     }
-    validExactlySevenLetters(item, name)
-    {
+    validExactlySevenLetters(item, name) {
         if ($("." + name).hasClass("inputErrorToFocus")) { $("." + name).removeClass("inputErrorToFocus") }
         let res = null;
         if (item.length != 7) {
-            res = name + "MustSevenLetters" 
+            res = name + "MustSevenLetters"
         }
-       
+
         if (item == "" || item == undefined || item == null) {
             res = name + "isMustFiled";
         }
@@ -270,21 +267,19 @@ export class ValidationService {
         }
         return res;
     }
-    validCompare(one, tow)
-    {
-        if(one!=tow)
-        return true;
-        return false;       
+    validCompare(one, tow) {
+        if (one != tow)
+            return true;
+        return false;
     }
 
-    validChipFun(item, name)
-    {
+    validChipFun(item, name) {
         if ($("." + name).hasClass("inputErrorToFocus")) { $("." + name).removeClass("inputErrorToFocus") }
         let res = null;
-        if (item.length !=15) {
-            res = name + "Must15Letters" 
+        if (item.length != 15) {
+            res = name + "Must15Letters"
         }
-       
+
         if (item == "" || item == undefined || item == null) {
             res = name + "isMustFiled";
         }
@@ -292,6 +287,20 @@ export class ValidationService {
             $("." + name).addClass("inputErrorToFocus");
         }
         return res;
+    }
+
+    base64MimeType(base64 : string, type: fileType) {
+        // base64 string first five characters define the mime type of the file.
+        let data = base64.split(',')[1].substring(0, 5).toUpperCase();
+        switch (type) {
+            case fileType.image:
+                //        png                jpg
+                if (data == "IVBOR" || data == "/9J/4")
+                    return true;
+                return false;
+            default:
+                return false;
+        }
     }
 
 
@@ -303,4 +312,7 @@ export class ValidationService {
             $("." + formClassName).find(".inputErrorToFocus").first().focus();
         }, secondTimeOut * 1000);
     }
+}
+export enum fileType {
+    image = 1
 }

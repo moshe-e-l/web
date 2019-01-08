@@ -1,8 +1,8 @@
 import { Injectable }       from '@angular/core'; 
-import { QuestionBase, DropdownQuestion, TextboxQuestion } from '../../Models/question-base';
-import { GetJsonService } from './get-json.service';
-import { EvaDataStructure } from '../../Models/ParamsModel';
 import { ReplaySubject } from 'rxjs';
+import { EvaDataStructure } from '../../../../Models/ParamsModel';
+import { GetJsonService } from '../../../services/get-json.service';
+import { QuestionBase, DropdownQuestion, TextboxQuestion } from '../models/question-base';
 
  
 @Injectable()

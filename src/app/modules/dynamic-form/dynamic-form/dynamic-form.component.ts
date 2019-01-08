@@ -1,13 +1,14 @@
 import { Component,OnInit, Output, ViewChild, ViewChildren, QueryList, ViewContainerRef, EventEmitter, Input } from '@angular/core';
-import { CommonService } from '../../services/common.service';
-import { EvaDataStructure, InputParams } from '../../../Models/ParamsModel';
-import { GetJsonService } from '../../services/get-json.service'
-import { ValidationService } from '../../services/validation.service';
+import { QuestionControlService } from '../services/question-control.service';
+import { EvaDataStructure, InputParams } from '../../../../Models/ParamsModel';
+import { QuestionBase, DropdownQuestion, TextboxQuestion, CheckboxQuestion } from '../models/question-base';
+import { FormGroup } from '@angular/forms';
+import { ValidationService } from '../../../services/validation.service';
 import { ActivatedRoute, Params } from '@angular/router';
-import { ReactiveFormsModule, FormGroup } from '@angular/forms';
-import { QuestionControlService } from '../../services/question-control.service';
-import { QuestionBase, DropdownQuestion, TextboxQuestion, CheckboxQuestion } from '../../../Models/question-base';
-import { ReCaptchaDirective } from '../../directives/recaptha.directive';
+import { CommonService } from '../../../services/common.service';
+import { GetJsonService } from '../../../services/get-json.service';
+import { ReCaptchaDirective } from '../directives/recaptha.directive';
+
 
 @Component({
   selector: 'app-dynamic-form',
@@ -21,6 +22,7 @@ export class DynamicFormComponent implements OnInit{
   currentCityID: string;
   @Input() GroupId;
   @Input() isSecondUse;
+  @Input() defaultValues;
   questions: QuestionBase<any>[] = [];
   form: FormGroup;
   payLoad = '';
@@ -45,6 +47,8 @@ export class DynamicFormComponent implements OnInit{
   }
  
   onSubmit() { 
+    // if(!this.form.valid)
+    //   return;
 
     let params= [];
     Object.keys(this.form.value).map(key=>{
@@ -90,6 +94,8 @@ let selectsGroups = this.groupBy(selects, "FieldId");
         options: this.getOptionsForSelectInput(element),
         required: element[0].IsRequired,
         order: element[0].Position,  
+        elementClass: element.CustomElementClass,
+        elementWraperClass : element.CustomRowClass,
       })
       questions.push(select);
  });
@@ -99,18 +105,17 @@ let textboxInputs = data.filter(f=> f.FieldsId != 15 && f.FieldsId != 9
                                  && f.FieldsId != 29);
 textboxInputs.forEach(element => {
 
-let textbox = new TextboxQuestion({
-   
+let textbox = new TextboxQuestion({   
     key: element.CustomElementId || element.FieldNameID,
     label: element.CustomFieldLabel || element.FieldNameLabel ,
-    value: null,
+    value: this.defaultValues[element.CustomElementId || element.FieldNameID] || null,
     required: element.IsRequired,
-    order: element.Position,
-    
+    order: element.Position,    
+    elementClass: element.CustomElementClass,
+    elementWraperClass : element.CustomRowClass,
     MaxLength: element.MaxLength,
     MinLength: element.MinLength,
-    IsNumeric: element.IsNumeric
-   
+    IsNumeric: element.IsNumeric   
   });
   questions.push(textbox);
 });
@@ -122,9 +127,11 @@ checkBoxInputs.forEach(element => {
   let checkBox = new CheckboxQuestion({
     key: element.CustomElementId || element.FieldNameID,
     label: element.CustomFieldLabel || element.FieldNameLabel ,
-    value: null,
+    value:  this.defaultValues[element.CustomElementId || element.FieldNameID] || null,
     required: element.IsRequired,
     order: element.Position,
+    elementClass: element.CustomElementClass,
+    elementWraperClass : element.CustomRowClass,
   });
   questions.push(checkBox);
 });
@@ -133,7 +140,7 @@ return questions.sort((a, b) => a.order - b.order);
 
 }
 
-
+///// HELPERS FUNCTION /////
 
 groupBy(xs, prop) {
 

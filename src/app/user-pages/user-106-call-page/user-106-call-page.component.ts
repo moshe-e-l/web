@@ -9,7 +9,7 @@ import { call106FileModel } from '../../../Models/call106FileModel';
 import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import { Subject } from 'rxjs';
-import { ValidationService } from '../../services/validation.service';
+import { ValidationService, fileType } from '../../services/validation.service';
 
 declare var NativeApp: any;
 
@@ -32,58 +32,58 @@ export class User106CallPageComponent implements OnInit {
 
 
   Description: string = "";
-  Latitude: string = "";
-  Longitude: string = "";
+ // Latitude: string = "";
+  //Longitude: string = "";
   ClientId: string = "";
   AppId: string = "";
-  MokedStatus: string = "";
-  MokedMessage: string = "";
-  UserId: string = "";
+  //MokedStatus: string = "";
+  //MokedMessage: string = "";
+  //UserId: string = "";
   StreetName: string = "";
   CityName: string = "";
   StreetNumber: string = "";
-  NewSystem: string = "";
-  UserFirstName: string = "";
-  UserLastName: string = "";
-  UserStreetName: string = "";
-  UserStreetNumber: string = "";
-  UserEmail: string = "";
-  UserPhoneNumber: string = "";
-  UserPhoneAreaCode: string = "";
-  UserMobileNumber: string = "";
-  UserMobileAreaCode: string = "";
-  CityId: string = "";
-  ImageFullPath: string = "";
-  ImageThumbPath: string = "";
-  HazardType: string = "";
+  //NewSystem: string = "";
+  //UserFirstName: string = "";
+  //UserLastName: string = "";
+  //UserStreetName: string = "";
+  //UserStreetNumber: string = "";
+  //UserEmail: string = "";
+  //UserPhoneNumber: string = "";
+  //UserPhoneAreaCode: string = "";
+  //UserMobileNumber: string = "";
+  //UserMobileAreaCode: string = "";
+  //CityId: string = "";
+  //ImageFullPath: string = "";
+  //ImageThumbPath: string = "";
+  //HazardType: string = "";
 
-  isSetAddressByGPS: boolean = true;
+  //isSetAddressByGPS: boolean = true;
 
-  isMobileUser: boolean;
-  latAndLangForGoogle: string;
+  //isMobileUser: boolean;
+  //latAndLangForGoogle: string;
 
   //validation
-  isValidSumary: boolean;
-  isValidCityName: boolean;
-  isValidStreet: boolean;
-  isValidStreetNum: boolean;
-  isValidDescription: boolean;
+  //isValidSumary: boolean;
+  //isValidCityName: boolean;
+  //isValidStreet: boolean;
+  //isValidStreetNum: boolean;
+  //isValidDescription: boolean;
   isValidDescriptionAndImage: boolean;
-  isValidCityNameMesseg: string;
+  //isValidCityNameMesseg: string;
   isValidStreetMesseg: string;
-  isValidDescriptionMesseg: string;
+  //isValidDescriptionMesseg: string;
   isValidStreetNumMesseg: string;
   isValidCorporationMesseg: string;
   MandatoryStreets: boolean;
 
   //imageHazardReport
-  image_fileName: string;
-  image_file: string;
-  image_fullFileNameForDB
-  isReportWithImage: boolean;
+  //image_fileName: string;
+  //image_file: string;
+  //image_fullFileNameForDB
+  //isReportWithImage: boolean;
   call106fileModel: call106FileModel;
   call106fileModelList: any = new Array();
-  maxFileValid: boolean;
+  //maxFileValid: boolean;
 
 
   fullstreetNamesList: any = new Array();
@@ -96,7 +96,7 @@ export class User106CallPageComponent implements OnInit {
   isCorporation: boolean = false;
   ListCorporation:string;
   Corporation:string;
-
+  fileValidation : string;
   constructor(private valid: ValidationService, private getLoctaionSer: GetLoctaionService,
      private jsonService: GetJsonService, private route: ActivatedRoute,
       private router: Router, public commonService: CommonService) {
@@ -105,11 +105,11 @@ export class User106CallPageComponent implements OnInit {
       this.getClientDetailByMgarId(params['city']);
     });
    
-    this.stateCtrl = new FormControl();
+   // this.stateCtrl = new FormControl();
   }
 
   ngOnInit() {
-    
+    this.loadDeleteFileFunction();
     this.GetCorporationAuthorities(this.currentCityID);
   }
 
@@ -163,82 +163,35 @@ export class User106CallPageComponent implements OnInit {
       state.Name.toLowerCase().indexOf(name.toLowerCase()) === 0);
   }
 
-
-
-  openCamera() {
-    NativeApp.openCamera();
-  }
-  ngAfterViewInit() {
-    var windowWidth = $(window).width();
-    if (windowWidth < 768) {
-      this.isMobileUser = true;
-
-    }
-    try {
-      NativeApp.requestLocation();
-      $("p.bottom_border.text_area textarea").css("max-width", "67%");
-
-      $(window).bind('hashchange', (e) => {
-        let location = window.location.hash;
-        this.latAndLangForGoogle = location.replace("#", "");
-        setTimeout(() => {
-          this.requestLocation();
-        }, 200);
-
-      });
-
-    }
-    catch (error) {
-      this.isSetAddressByGPS = false;
-    }
-
-  }
-
-  requestLocation() {
-
-    this.getLoctaionSer.getLocation(this.latAndLangForGoogle).subscribe(res => {
-
-      this.StreetNumber = res.results[0].address_components[0].long_name;
-      this.StreetName = res.results[0].address_components[1].long_name;
-    }, err => {
-
-    });
-  }
-
-  setAddressByGPS() {
-    this.isSetAddressByGPS = true;
-    let location = window.location.hash;
-    this.latAndLangForGoogle = location.replace("#", "");
-    setTimeout(() => {
-      this.requestLocation();
-    }, 200);
-  }
-  setAddressManualy() {
-    this.isSetAddressByGPS = false;
-
-  }
-
   uploadFile(event) {
-    if (this.call106fileModelList.length > 1) {
-      this.maxFileValid = true;
-      return false;
-    }
-    else { this.maxFileValid = false; }
+
+    // if (this.call106fileModelList.length > 1) {
+    //   this.maxFileValid = true;
+    //   return false;
+    // }
+    // else { this.maxFileValid = false; }
 
     let files = event.target.files;
-
     if (files.length > 0) {
-      let x = files[0].name.split(".");
-      let imageType = "." + x[1];
-      this.getBase64(files[0], imageType);
+      for (let i = 0; i < files.length; i++) {
+        let x = files[i].name.split(".");
+        let imageType = "." + x[1];
+        this.getBase64(files[i], imageType);
+      }
     }
-
   }
 
   getBase64(file, imageType) {
     var reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = () => {
+      if(this.valid.base64MimeType(reader.result, fileType.image))
+      {
+        this.fileValidation = "סוג קובץ אינו חוקי";
+        return;
+      }      
+      this.fileValidation = null;
+
       var canvas = document.createElement("canvas");
       var img = document.createElement("img");
       img.src = reader.result;
@@ -246,7 +199,6 @@ export class User106CallPageComponent implements OnInit {
       img.height = 300;
       var ctx = canvas.getContext("2d");
       ctx.drawImage(img, 0, 0);
-
       canvas.width = img.width;
       canvas.height = img.height;
       var ctx = canvas.getContext("2d");
@@ -254,26 +206,25 @@ export class User106CallPageComponent implements OnInit {
       setTimeout(() => {
         ctx.drawImage(img, 0, 0, img.width, img.height);
         var dataurl = canvas.toDataURL("image/png");
-
-
         this.call106fileModel = new call106FileModel();
-        this.call106fileModel.file = dataurl // reader.result;
-        this.call106fileModel.id = this.guid();
-        this.call106fileModel.file_name = this.guid() + imageType;
+        this.call106fileModel.file = dataurl//reader.result;
+        this.call106fileModel.id = this.commonService.guid();
+        this.call106fileModel.file_name = this.commonService.guid() + imageType;
         this.call106fileModel.fullFileNameForDB = 'images/cities/' + this.currentCityID + '/' + this.call106fileModel.file_name;
+        if(this.call106fileModelList.length > 1)
+        this.fileValidation = "מקסימום 2 קבצים מותרים";
+        else{
+        this.fileValidation = null;
         this.call106fileModelList.push(this.call106fileModel);
-        console.log(this.call106fileModelList)
         $(".meter_upload").append("<div class='upload-wrap'><img src='" + this.call106fileModel.file + "' class='meter_img' ><a id='" + this.call106fileModel.id + "' class='delbtn removebtn'><img id='" + this.call106fileModel.id + "' src='assets/img/close-white.png' /></a></div>");
         $(".meter_upload").addClass('upload-meter-show');
-        this.loadDeleteFileFunction();
+        }
       }, 1000);
-
     };
     reader.onerror = (error) => {
       //console.log('Error: ', error);
     };
   }
-
 
 
   //שלב א בשליחה
@@ -349,13 +300,13 @@ export class User106CallPageComponent implements OnInit {
      this.params.push(this.param);
 
     try {
-      this.param = new InputParams("@FullImagePath", this.call106fileModelList[0].fullFileNameForDB);
+      this.param = new InputParams("@FullImagePath", this.call106fileModelList[0].fullFileNameForDB , "img");
       this.params.push(this.param);
-      this.param = new InputParams("@ImageThumbPath", this.call106fileModelList[0].fullFileNameForDB);
+      this.param = new InputParams("@ImageThumbPath", this.call106fileModelList[0].fullFileNameForDB , "img");
       this.params.push(this.param);
-      this.param = new InputParams("@FullImagePath2", this.call106fileModelList[1].fullFileNameForDB);
+      this.param = new InputParams("@FullImagePath2", this.call106fileModelList[1].fullFileNameForDB , "img");
       this.params.push(this.param);
-      this.param = new InputParams("@ImageThumbPath2", this.call106fileModelList[1].fullFileNameForDB);
+      this.param = new InputParams("@ImageThumbPath2", this.call106fileModelList[1].fullFileNameForDB, "img");
       this.params.push(this.param);
     } catch (e) {
 
@@ -385,18 +336,6 @@ export class User106CallPageComponent implements OnInit {
 
   }
 
-  guid() {
-    return this.s4() + this.s4() + this.s4() + this.s4() + this.s4();
-
-  }
-  s4() {
-    return Math.floor((1 + Math.random()) * 0x10000)
-      .toString(16)
-      .substring(1);
-  }
-
-
-
 
   validDescriptionAndImageFun() {
     this.isValidDescriptionAndImage = this.valid.validDescriptionAndImageFun(this.Description, this.call106fileModelList.length);
@@ -423,7 +362,7 @@ export class User106CallPageComponent implements OnInit {
     if(this.isCorporation)
     this.validCorporationFun();
     this.validDescriptionAndImageFun();
-    if (!this.isSetAddressByGPS && this.MandatoryStreets) { this.validStrretFromTheListFun(); }
+    if (this.MandatoryStreets) { this.validStrretFromTheListFun(); }
 
     if (this.isValidStreetMesseg != null || this.isValidStreetNumMesseg != null
       || this.isValidDescriptionAndImage ||this.isValidCorporationMesseg !=null)

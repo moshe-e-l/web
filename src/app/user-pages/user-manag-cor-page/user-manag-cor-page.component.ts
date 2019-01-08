@@ -10,7 +10,6 @@ import { Router, ActivatedRoute, Params } from "@angular/router";
 import { ValidationService } from '../../services/validation.service';
 import { UserSideMenuComponent } from '../../components/user-side-menu/user-side-menu.component';
 import { CityDropDownComponent } from '../../components/city-drop-down/city-drop-down.component';
-import { FormValidationService } from '../../services/form-validation.service';
 
 declare function allowOnlyNumbers(): any;
 

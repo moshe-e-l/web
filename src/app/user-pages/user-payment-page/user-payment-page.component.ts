@@ -23,22 +23,25 @@ export class UserPaymentPageComponent implements OnInit {
   currentCityName: string;
   currentCityId: string;
   iframeSrc: string = '';
-   
+  isFormLink: boolean = false;
 
   constructor(private router: Router, private jsonService: GetJsonService,
      public commonService: CommonService, private route: ActivatedRoute) {
     this.route.params.subscribe((params: Params) => {
-      this.currentCityId = (params['child'] ? params['child'] : params['city']);
-    
+      this.currentCityId = (params['child'] ? params['child'] : params['city']);   
+     if(this.router.url.includes("QR_TAG")){
+        this.isFormLink = true;
+        this.getTokenForUserPay(this.currentCityId, params["stub"], params["payerId"]);
+      }
     });
-
+    
     if (this.currentCityId.toString() == "9999") {
       this.router.navigate(['']);
     }
      this.commonService.isLogInUserReceivedSource.first().subscribe(
       (isLogIn) => {      
         if (isLogIn) {
-          this.getTokenForUserPay();
+          this.getTokenForUserPay(this.currentCityId, "0", "123");
         }
         else{
           this.iframeSrc = this.jsonService.BASE_PAY24_URL + "?ReshutMast=" + this.currentCityId +
@@ -68,15 +71,15 @@ export class UserPaymentPageComponent implements OnInit {
   }
 
 
-  getTokenForUserPay() {
+  getTokenForUserPay(compenyId, stub, payerId) {
     this.actionName = 'f31aa8bb-8c90-465d-8f61-aa3562574010';
     this.dataToSend = new Array<ActionInputParams>()
     this.params = new Array<InputParams>();
-    this.param = new InputParams("@CompanyId", this.currentCityId);
+    this.param = new InputParams("@CompanyId", compenyId);
     this.params.push(this.param);
-    this.param = new InputParams("@StubCode", "0");
+    this.param = new InputParams("@StubCode", stub);
     this.params.push(this.param);
-    this.param = new InputParams("@PayerId", "616");
+    this.param = new InputParams((this.commonService.isLogInUser ? "@PayerId" : "payerId"), payerId);
     this.params.push(this.param);
 
     this.singleDataObj = { ActionName: this.actionName, InputParamsCollection: this.params }
@@ -87,7 +90,8 @@ export class UserPaymentPageComponent implements OnInit {
         alert("WS is down");
         return false;
       }
-      this.iframeSrc = this.jsonService.BASE_PAY24_URL + "?token=" + res.Value +
+      this.iframeSrc = this.jsonService.BASE_PAY24_URL +
+       (this.isFormLink ? "?linkToken=" : "?token=") + res.Value +
       "&payOrigin="+(this.commonService.isMobileUser ? "MAST_Web_Mobile":"MAST_Web");
     }, err => {
       //alert(err);

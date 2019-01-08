@@ -9,7 +9,7 @@
   </div>
 </div>
 
-<app-spinner-loader [show]="commonService.showLoader" [styleLoader]="commonService.styleLoader" ></app-spinner-loader>
+<app-spinner-loader [show]="commonService.showLoader" [styleLoader]="commonService.styleLoader"></app-spinner-loader>
 
 
 <div class="alertSign" style="display: none;">
@@ -21,44 +21,41 @@
   title="jump to main">עבור לתוכן מרכזי</a>
 
 <header *ngIf="normalHeader" id="homeHeader" class="header">
- <div class="header_top">
-  <div class="container-fluid">
-    <div class="header-content">
+  <div class="header_top">
+    <div class="container-fluid">
+      <div class="header-content">
 
-      <div class="logo-rw">
-        <img src="assets/img/mast-logo.png" title="MAST! {{'MunicipalServices'| lang }}" alt="MAST! {{'MunicipalServices'| lang }}"
-          class="hideMobile" />
-        <img src="assets/img/mast-logo_blue.png" title="MAST! {{'MunicipalServices'| lang }}" alt="MAST! {{'MunicipalServices'| lang }}"
-          class="showMobile" />
-        <div class="slogan_text">שירותים דיגיטליים </div>
+        <div class="logo-rw">
+          <img src="assets/img/mast-logo.png" title="MAST! {{'MunicipalServices'| lang }}" alt="MAST! {{'MunicipalServices'| lang }}"
+            class="hideMobile" />
+          <img src="assets/img/mast-logo_blue.png" title="MAST! {{'MunicipalServices'| lang }}" alt="MAST! {{'MunicipalServices'| lang }}"
+            class="showMobile" />
+          <div class="slogan_text">שירותים דיגיטליים </div>
+        </div>
+
+        <button type="button" (click)="hamborgerScript()" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#ex-navbar-collapse"
+          aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar line1"></span>
+          <span class="icon-bar line2"></span>
+          <span class="icon-bar line3"></span>
+        </button>
+
+        <app-hamburger-menu></app-hamburger-menu>
+
       </div>
-
-      <button type="button" (click)="hamborgerScript()"
-       class="navbar-toggle collapsed" data-toggle="collapse"
-        data-target="#ex-navbar-collapse"
-        aria-expanded="false" aria-controls="navbar">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar line1"></span>
-        <span class="icon-bar line2"></span>
-        <span class="icon-bar line3"></span>
-      </button>
-
-      <app-hamburger-menu></app-hamburger-menu>
-
     </div>
   </div>
-</div>
   <video autoplay="true" muted="muted" loop="" id="myVideo">
-      <source src="assets/img/header_video.mp4" type="video/mp4">
+    <source src="assets/img/header_video.mp4" type="video/mp4">
   </video>
 
 </header>
 
 
 <div id="header" class="lessHeightBanner">
-  <header  *ngIf="headerForPageWithoutReg || contentHeader" class="header" 
-  [ngClass]="{'inner_banner' : !commonService.isMobileUser , 'contentHeader' : contentHeader ,
-              'headerForPageWithoutReg': headerForPageWithoutReg  } " >
+  <header *ngIf="headerForPageWithoutReg || contentHeader" class="header" [ngClass]="{'inner_banner' : !commonService.isMobileUser , 'contentHeader' : contentHeader ,
+              'headerForPageWithoutReg': headerForPageWithoutReg  } ">
     <div class="container-fluid">
       <div class="header-content">
         <div class="userheaderimg">
@@ -139,15 +136,16 @@
       <div class="row">
         <div class="col-md-12">
           <p class="footer_description">
-            <img src="assets/img/mast_footer_logo.png" class="mast_footer_logo" /> לשירותים דיגיטליים לרשויות ותאגידים – תשלומים, טפסים, זימון תורים, ניהול פניות, דווח מפגעים, שוברים במייל ועוד. בכמה שלבים פשוטים.
+            <img src="assets/img/mast_footer_logo.png" class="mast_footer_logo" /> לשירותים דיגיטליים לרשויות ותאגידים – תשלומים, טפסים, זימון תורים, ניהול פניות, דווח מפגעים, שוברים במייל ועוד.
+            בכמה שלבים פשוטים.
           </p>
           <app-footer-menu></app-footer-menu>
         </div>
       </div>
     </div>
-<!--  (click)="openPageFromFooter($event,'נגישות')" -->
-    <div class="accessibilityIcon"> 
-      <a href="javascript:void(0)" tabindex="50" routerLink="/content/{{'accessbility'| lang }}" >
+    <!--  (click)="openPageFromFooter($event,'נגישות')" -->
+    <div class="accessibilityIcon">
+      <a href="javascript:void(0)" tabindex="50" routerLink="/content/{{'accessbility'| lang }}">
         <img src="assets/img/icon-negishut.png" alt="accessibility icon" />
       </a>
     </div>
@@ -160,30 +158,26 @@
 
 
 <div *ngIf="popUpSubject" id="popup" class="overlay">
-    <div class="popup">
-      <div *ngIf="popUpSubject == 'firstMsg'">        
-        <h2>ברוכים הבאים לפלטפורמת הדיגיטל -MAST  </h2>
-      </div>
-      <div class="content">
-        <div *ngIf="popUpSubject == 'firstMsg'">
-      <hr>
-    <div class="text">
-        הינכם מועברים לשירות המבוקש.
-
+  <div class="popup">
+      <a class="close" (click)="closePopup()">&times;</a>
+    <div *ngIf="popUpSubject == 'firstMsg'">
+      <h2>ברוכים הבאים ל -MAST</h2>
     </div>
+    <div class="content">
+      <div *ngIf="popUpSubject == 'firstMsg'">
+        <hr>
+        <div class="text">
+           הינכם מועברים לשירות בפלטפורמת הדיגיטל
+           המובילה מטעם עיריות, רשויות ותאגידי מים
+        </div>
+        <div class="timer">
+          {{stopPopUpTimer}}
+        </div>
+        <div class="btmText">
+          השירות בכפוף לתקנון 
+        </div>
 
-
-         <div class="timer">
-            {{stopPopUpTimer}}    
-
-         </div>
-
-         <div class="text">
-            השירות ניתן בכפוף לתקנון האתר  
-
-         </div>
-            
-        </div>              
       </div>
     </div>
   </div>
+</div>

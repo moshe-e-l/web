@@ -27,7 +27,8 @@ export class UserFormPageComponent implements OnInit, AfterViewInit {
   param: InputParams;
   EwaPost: EvaDataStructure = new EvaDataStructure();
 
-  constructor(public commonService: CommonService, private router: Router, private route: ActivatedRoute, private jsonService: GetJsonService) {
+  constructor(public commonService: CommonService, private router: Router,
+     private route: ActivatedRoute, private jsonService: GetJsonService) {
     this.route.params.subscribe((params: Params) => {
       this.pageUid = params['pageUid'];
 

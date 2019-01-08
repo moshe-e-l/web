@@ -38,7 +38,9 @@ export class UserServicesPageComponent implements OnInit, AfterViewInit {
 
   fast_Mast: fast_Mast_blockModel;
 
-  constructor(private route: ActivatedRoute, private router: Router, private parent: MainTemplateComponent, public commonService: CommonService, private jsonService: GetJsonService) {
+  constructor(private route: ActivatedRoute, private router: Router, 
+    private parent: MainTemplateComponent, public commonService: CommonService,
+     private jsonService: GetJsonService) {
     
 
     this.route.params.subscribe((params: Params) => {
@@ -132,18 +134,14 @@ export class UserServicesPageComponent implements OnInit, AfterViewInit {
 
 
   GetUserDetailByFastMastCode() {
-    this.dataToSend = new Array<ActionInputParams>()
-    this.params = new Array<InputParams>();
-    this.actionName = '7ff39d2e-d866-4440-8b43-e7095356d092';
-    this.param = new InputParams("@Code", this.fast_Mast.code);
-    this.params.push(this.param);
-
-    this.singleDataObj = { ActionName: this.actionName, InputParamsCollection: this.params }
-    this.dataToSend.push(this.singleDataObj);
-    this.FullActionInputParams = new FullActionInputParams(this.dataToSend, 'MastApi_KeepItCity', 'fastMastValidtion');
-    this.jsonService.sendData(this.FullActionInputParams).subscribe(res => {
+    let data = this.EwaPost.BuildDataStructure("7ff39d2e-d866-4440-8b43-e7095356d092",
+                [{Name : "@Code" , Value : this.fast_Mast.code },
+                 {Name : "@ClientId" , Value : this.currentCityID}
+              ],
+               'MastApi_KeepItCity', 'fastMastValidtion')
+    this.jsonService.sendData(data).subscribe(res => {
       this.isCorrectFastMastCode = false;
-      if (res[0].result == "invalid") {
+      if(!res[0]) {
         this.isCorrectFastMastCode = true;
         setTimeout(() => {
           $("#validFastMastDiv").attr("tabindex", "-1").focus();

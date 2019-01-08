@@ -69,7 +69,6 @@ import { UserVaccinesComponent } from './user-pages/user-veterinaria-page/user-v
 import { UserVertrinariaFormsComponent } from './user-pages/user-veterinaria-page/user-vertrinaria-forms/user-vertrinaria-forms.component';
 import { VeterinariaService } from './services/vetrinaria.service';
 import { UserVerificationAssetPageComponent } from './user-pages/user-verification-asset-page/user-verification-asset-page.component';
-import { ReCaptchaDirective } from './directives/recaptha.directive';
 import { UserChetPageComponent } from './user-pages/user-chet-page/user-chet-page.component';
 import { UserSummerCampPageComponent } from './user-pages/user-summer-camp-page/user-summer-camp-page.component';
 import { CityDropDownComponent } from './components/city-drop-down/city-drop-down.component';
@@ -85,13 +84,19 @@ import { SpinnerLoaderComponent } from './components/spinner-loader/spinner-load
 import { B2mTableComponent } from './components/b2m-table/b2m-table.component';
 import { EditableInputComponent } from './components/editable-input/editable-input.component';
 import {MatTooltipModule} from '@angular/material';
-import { DynamicFormComponent } from './components/dynamic-form/dynamic-form.component';
-import { DynamicFormQuestionComponent } from './components/dynamic-form-question/dynamic-form-question.component';
-import { FormValidationService } from './services/form-validation.service';
 import { SearchEngineResultsComponent } from './components/search-engine-results/search-engine-results.component';
 import { LangPipe } from './pipes/lang.pipe';
 import { MyAppointmentsComponent } from './user-pages/user-appointments-page/my-appointments/my-appointments.component';
 import { LifeBeltComponent } from './page-template/life-belt/life-belt.component';
+import { FastMastArnonaComponent } from './user-pages/user-fast-mast-details/fast-mast-arnona/fast-mast-arnona.component';
+import { FastMastCodeComponent } from './user-pages/user-fast-mast-details/fast-mast-code/fast-mast-code.component';
+import { FastMastDetailsComponent } from './user-pages/user-fast-mast-details/fast-mast-details/fast-mast-details.component';
+import { UserFastMastGeneralComponent } from './user-pages/user-fast-mast-details/user-fast-mast-general/user-fast-mast-general.component';
+import { FastMastService } from './services/fast-mast.service';
+import { DynamicFormComponent } from './modules/dynamic-form/dynamic-form/dynamic-form.component';
+import { DynamicFormQuestionComponent } from './modules/dynamic-form/dynamic-form-question/dynamic-form-question.component';
+import { FormValidationService } from './modules/dynamic-form/services/form-validation.service';
+import { ReCaptchaDirective } from './modules/dynamic-form/directives/recaptha.directive';
 
 
 declare var System: any; 
@@ -178,7 +183,11 @@ var messagesRu;
       DynamicFormQuestionComponent,
       SearchEngineResultsComponent,
       MyAppointmentsComponent,
-      LifeBeltComponent
+      LifeBeltComponent,
+      FastMastArnonaComponent,
+      FastMastCodeComponent,
+      FastMastDetailsComponent,
+      UserFastMastGeneralComponent
 
   ],
   imports: [    
@@ -194,7 +203,8 @@ var messagesRu;
   ],
   providers: [GetJsonService,CommonService, GetLoctaionService, GetUserIpService,
        VeterinariaService, AppointmentsService, HamburgerMenuComponent, ContentComponent, 
-       AppointmentsService, ValidationService,EncryptionService, FormValidationService
+       AppointmentsService, ValidationService,EncryptionService, FormValidationService,
+       FastMastService
       
               ],
   bootstrap: [AppComponent]

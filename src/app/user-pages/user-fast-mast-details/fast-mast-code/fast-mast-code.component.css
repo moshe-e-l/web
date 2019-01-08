@@ -1,0 +1,41 @@
+.section-wraper{
+    padding: 10px;
+}
+.form-wraper{
+    border-bottom: 1px solid #0000c5;;
+}
+.title .big{
+    font-size: 35px;
+}
+.title .small{
+    font-size: 21px;
+    color: #6e6b6b;
+}
+.input-lable{
+    font-size: 14px;
+}
+input{
+    height: 50px;
+    width: 35%;
+    border: none;
+    border-bottom: 2px solid #0000c5;;
+    border-top: 1px solid #0000c5;
+    margin-bottom: 100px;
+}
+input::placeholder{
+    color: rgb(128, 128, 128);
+    font-size: 15px;
+    padding-right: 10px;
+}
+.step-buttons {
+    width: fit-content;
+}
+.buttons.step-buttons a {
+       padding: 7px 40px;
+       font-weight: bold;
+}
+@media(max-width : 768px){
+    input{
+        width: 80%;
+   }
+}

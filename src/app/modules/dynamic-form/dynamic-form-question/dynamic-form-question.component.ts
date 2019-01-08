@@ -1,22 +1,18 @@
 import { Component,AfterViewInit, Input, ViewChild } from '@angular/core';
-import { QuestionBase } from '../../../Models/question-base';
 import { ReactiveFormsModule, FormGroup,FormControl, Validators, AbstractControl } from '@angular/forms';
-import { ValidationService } from '../../services/validation.service';
-
-
+import { QuestionBase } from '../models/question-base';
  
 @Component({
   selector: 'app-question',
-  templateUrl: './dynamic-form-question.component.html'
+  templateUrl: './dynamic-form-question.component.html',
+  styleUrls: ['./dynamic-form-question.component.css']
 })
 export class DynamicFormQuestionComponent implements AfterViewInit {
   @Input() question: QuestionBase<any>;
   @Input() form: FormGroup;
-  validationMesseg:string;
- 
+  validationMesseg:string; 
 
-   ngAfterViewInit(){
-   
+   ngAfterViewInit(){  
    }
   get isValid() {  
   

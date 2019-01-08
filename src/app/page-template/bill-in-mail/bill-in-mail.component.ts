@@ -7,7 +7,7 @@ import { User } from '../../../Models/UserModel';
 import { GetUserIpService } from '../../services/get-user-ip.service';
 import { CommonService } from '../../services/common.service';
 import { ValidationService } from '../../services/validation.service';
-import { ReCaptchaDirective } from '../../directives/recaptha.directive';
+import { ReCaptchaDirective } from '../../modules/dynamic-form/directives/recaptha.directive';
 
 declare function resetCaptcha();
 

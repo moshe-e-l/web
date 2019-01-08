@@ -50,20 +50,12 @@ export class UserMidotArnonaPageComponent implements OnInit {
    
      }
   GetUserDetailByFastMastCode()
-  {     
-   this.dataToSend = new Array<ActionInputParams>()
-   this.params = new Array<InputParams>();
-   this.actionName = '7ff39d2e-d866-4440-8b43-e7095356d092';        
-   this.param = new InputParams("@Code",this.fast_mast_code);
-   this.params.push(this.param);
-   // Update: get the data per the client id also 
-   this.param = new InputParams("@ClientId",this.companyId);
-   this.params.push(this.param);
-
-   this.singleDataObj = { ActionName: this.actionName, InputParamsCollection: this.params }
-   this.dataToSend.push(this.singleDataObj);
-   this.FullActionInputParams = new FullActionInputParams(this.dataToSend, 'MastApi_KeepItCity','');
-   this.jsonService.sendData(this.FullActionInputParams).subscribe(res => {
+  {       
+     let data = this.EwaPost.BuildDataStructure("7ff39d2e-d866-4440-8b43-e7095356d092",
+     [{Name : "@Code" , Value : this.fast_mast_code },
+     {Name : "@ClientId" , Value : this.companyId }],
+        'MastApi_KeepItCity', 'fastMastValidtion'); 
+   this.jsonService.sendData(data).subscribe(res => {
      if(!res[0])
       return;
      this.assetList = new Array();

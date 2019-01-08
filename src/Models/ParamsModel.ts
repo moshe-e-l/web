@@ -3,9 +3,10 @@ export class InputParams {
     Value: string = "";
     Type: string;
 
-    constructor(Name, Value) {
+    constructor(Name, Value , Type = null) {
         this.Name = Name;
         this.Value = Value
+        this.Type = Type;
     }
 }
 
