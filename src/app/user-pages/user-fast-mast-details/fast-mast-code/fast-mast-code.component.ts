@@ -21,10 +21,13 @@ export class FastMastCodeComponent implements OnInit {
                 [{Name : "@Code" , Value : this.fastMastService.code },
                 {Name : "@ClientId" , Value : this.fastMastService.clientId}], 
                'MastApi_KeepItCity', 'fastMastValidtion');
-               console.log(this.fastMastService.clientId)
     this.jsonService.sendData(data).subscribe(res => {     
       if (!res[0])   
          this.isIncorrectCode = true;
+        else{
+          this.fastMastService.FMuserDetails = res[0];
+          this.fastMastService.activeStep = "details";
+        }
     }, err => {  });
   }
 }

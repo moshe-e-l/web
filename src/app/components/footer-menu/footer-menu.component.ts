@@ -30,7 +30,9 @@ export class FooterMenuComponent implements OnInit {
        this.mastManagerLink = (this.jsonService.ORIGIN == 'https://dev.mast.co.il' ?
         "https://dev.mast.co.il/Manager/Login.aspx" : "https://manager.mast.co.il/login.aspx")
       }
-
+   ngOnInit() {  
+        this.GetFooterMenuLinks();     
+    }
   GetFooterMenuLinks() {
     this.dataToSend = new Array<ActionInputParams>();
     this.params = new Array<InputParams>();
@@ -66,8 +68,6 @@ export class FooterMenuComponent implements OnInit {
     }
   }
   
-  ngOnInit() {  
-      this.GetFooterMenuLinks();     
-  }
+
 
 }

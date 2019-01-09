@@ -19,9 +19,6 @@
               <app-editable-input #phone [inputValue]="user.Phone" 
               (saveData)="updateUserDetails('phone', $event)">
               </app-editable-input>
-            <!-- <a class="edit_icon edit_content" href="javascript:;">
-              <input type="text" [(ngModel)]="test">
-            </a> -->
           </span>
         </td>
         <td>
@@ -29,9 +26,6 @@
               <app-editable-input #email [inputValue]="user.Email" 
               (saveData)="updateUserDetails('email', $event)">
               </app-editable-input>
-            <!-- <a class="edit_icon edit_content" href="javascript:;">
-              <span>mymail@gmail.com</span>
-            </a> -->
           </span>
          
         </td>
@@ -41,45 +35,7 @@
   </table>
 
 
-<!-- <div class="box-wrapper proper_page" style="padding: 0% 0%;">
 
-  <div class="col-md-12 col-sm-12 pull-left">
-    <div class="left_table_2">
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th scope="col" id="tbl5">#</th>
-            <th scope="col" id="tbl6">{{'payerNumber'| lang }}</th>
-            <th scope="col" id="tbl8">{{'phone'| lang }}</th>
-            <th scope="col" id="tbl9">{{'email'| lang }}</th>
-            <th scope="col" id="tbl10">{{'fullName'| lang }}</th>
-
-          </tr>
-        </thead>
-        <tbody *ngIf="user">
-          <tr>
-            <th scope="col" id="tbl14" headers="tbl5">1</th>
-            <td scope="row" headers="tbl6 tbl14">{{user.UserName}}</td>
-            <td scope="row" headers="tbl8 tbl14">
-              <app-editable-input #phone [inputValue]="user.Phone" 
-              (saveData)="updateUserDetails('phone', $event)">
-              </app-editable-input>
-
-            </td>
-            <td scope="row" headers="tbl9 tbl14">
-              <app-editable-input #email [inputValue]="user.Email" 
-              (saveData)="updateUserDetails('email', $event)">
-              </app-editable-input>
-            </td>
-            <td scope="row" headers="tbl10 tbl14">{{user.FirstName}} {{user.LastName}}</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </div>
-</div>
-
--->
 
 <div *ngIf="isValidEmailMesseg || isValidPhoneMesseg" id="popup" class="overlay">
   <div class="popup">

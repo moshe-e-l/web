@@ -13,10 +13,9 @@ export class UserFastMastGeneralComponent{
   constructor(public commonService: CommonService, public fastMastService :FastMastService,
     private route: ActivatedRoute, private router: Router,) { 
       this.route.params.subscribe((params: Params) => {
-         this.fastMastService.clientId = params["city"];
-         console.log(this.fastMastService.clientId)
+         this.fastMastService.clientId = params["city"];        
       });
-      this.fastMastService.activeStep = "details";
+      this.fastMastService.activeStep = "code";
   }
  
 

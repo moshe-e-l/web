@@ -127,6 +127,7 @@ import { UserFastMastGeneralComponent } from '../../user-pages/user-fast-mast-de
     { path: 'user/:city/point-of-intrest', component: UserPointsOfIntrestPageComponent },  
     { path: 'user/:city/veterinaria/:step', component: UserVetrerinariaGeneralPageComponent },  
     { path: 'user/:city/life-belt', component: LifeBeltComponent },  
+    { path: 'user/:city/fast-mast-details', component: UserFastMastGeneralComponent },  
 
     { path: '**', redirectTo: '' }
   

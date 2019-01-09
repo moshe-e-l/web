@@ -1,4 +1,9 @@
-.container_user_div{
+#servicesAreaDiv{
     font-family: "Heebothin",sans-serif;
     font-weight: bold;
+}
+@media(min-width:1024px){
+    #servicesAreaDiv{
+        padding: 50px;
+    }
 }

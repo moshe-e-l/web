@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
  
 import { CommonService } from '../../services/common.service';
 import { Router, ActivatedRoute, Params } from "@angular/router";
-import { InputParams, ActionInputParams, FullActionInputParams, EvaDataStructure } from '../../../Models/ParamsModel';
+import { EvaDataStructure } from '../../../Models/ParamsModel';
 import { GetJsonService } from '../../services/get-json.service';
 import { arnonaModel } from '../../../Models/arnona-model';
 
@@ -12,14 +12,7 @@ import { arnonaModel } from '../../../Models/arnona-model';
   styleUrls: ['./user-midot-arnona-page.component.css']
 })
 export class UserMidotArnonaPageComponent implements OnInit {
-   
-
-  actionName: string;
-  FullActionInputParams: FullActionInputParams;
-  dataToSend: any = new Array<ActionInputParams>();
-  singleDataObj: any = new ActionInputParams();
-  params: any = new Array<InputParams>();
-  param: InputParams;
+     
   EwaPost: EvaDataStructure = new EvaDataStructure();
 
   companyId:string;

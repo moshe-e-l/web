@@ -145,7 +145,6 @@ export class RegestritionLogInComponent implements AfterViewInit {
        // grecaptcha.reset(); // נאפס את הקפצ'ה כי ם היא תישלח עם אותו אישור פעמיים תחזור תשובה שלילית
        //this.captcha.isSecondUse = true;
        this.captcha.resetCaptcha();
-
         this.isValidExsistsPhone = true;
         $("#cellphone_number").addClass("inputErrorToFocus");
         this.valid.setFocusToLastAlertForAccessibility("form_section_1", 2);

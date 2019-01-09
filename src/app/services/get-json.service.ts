@@ -66,7 +66,7 @@ export class GetJsonService {
      if( this.ORIGIN == "https://app.mast.co.il"  ||  this.ORIGIN == "https://www.mast.co.il")
      {
         this.BASE_PAY24_URL = "https://www.pay24.co.il/payDesign/SearchPay/SearchPay";
-        this.BASE_URL = 'https://api.mast.co.il';
+        this.BASE_URL = 'https://apiweb.mast.co.il';
         this.BASE_FORM_URL = "https://mast.co.il/forms/StatusNetForms/DynamicForm.aspx";
         this.BASE_CREDIT_DETAIL_URL = "https://www.pay24.co.il/payDesign/Registration/Registration";  
     } 

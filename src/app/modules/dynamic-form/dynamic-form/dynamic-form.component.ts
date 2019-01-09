@@ -135,7 +135,7 @@ checkBoxInputs.forEach(element => {
   });
   questions.push(checkBox);
 });
-
+console.log(questions)
 return questions.sort((a, b) => a.order - b.order);
 
 }

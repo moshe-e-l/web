@@ -1,3 +1,36 @@
-<p>
-  fast-mast-arnona works!
-</p>
+<div class="title">
+    <p class="big">
+    תשריטי ארנונה
+    </p>
+    <p class="small">
+     להלן תשריטי הארנונה שלכם
+    </p>
+  </div>
+<div class="wrap_table">
+<h3>
+    תשריטי ארנונה</h3>
+<table class="table">
+  <thead>
+    <tr>
+      <th>מספר משלם</th>
+      <th>צפיה</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>
+        <span>{{fastMastService.FMuserDetails.PayerId}}</span>
+      </td>
+      <td>
+        <span><a (click)="showPdf = true" class="imgText cursorPointer"><i class="fa fa-file-pdf-o" aria-hidden="true"></i></a> </span>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<div *ngIf="showPdf" class="iframe_wrap">
+    <a id="closePdfDoc" (click)="showPdf = false" class="b-close cursorPointer" style=" position: fixed; z-index: 14;" >x</a>
+    <iframe id="pdfIframe" [src]="iframeLink | safe" frameborder="2" style=" position: fixed; height: 50%;" ></iframe>
+</div>
+
