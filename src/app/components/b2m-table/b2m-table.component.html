@@ -10,6 +10,7 @@
       <tr *ngFor="let b2m of b2mList index as i">
         <td>
           <span>
+            <!--  -->
               <app-editable-input #edList
               [inputValue]="b2m.PayerEmail"         
               (saveData)="prevUpdate($event, b2m, i , 'UPDATE')">
