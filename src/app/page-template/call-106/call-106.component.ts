@@ -9,7 +9,6 @@ import { FormControl } from '@angular/forms';
 import { Observable } from 'rxjs/Observable';
 import { Meta } from '@angular/platform-browser';
 import { ValidationService, fileType } from '../../services/validation.service';
-import { QuestionService } from '../../modules/dynamic-form/services/question.service';
 
 
 declare var NativeApp: any;
@@ -18,7 +17,6 @@ declare var NativeApp: any;
   selector: 'app-call-106',
   templateUrl: './call-106.component.html',
   styleUrls: ['./call-106.component.css'],
-  providers: [QuestionService]
 })
 export class Call106Component implements OnInit {
 
@@ -75,7 +73,7 @@ export class Call106Component implements OnInit {
   // @ViewChild('form') form : DynamicFormComponent;
   constructor(private valid: ValidationService, private route: ActivatedRoute,
     private jsonService: GetJsonService, private router: Router,
-    public commonService: CommonService, private meta: Meta, questionService: QuestionService) {
+    public commonService: CommonService, private meta: Meta) {
     //this.stateCtrl = new FormControl();
 
     this.route.params.subscribe((params: Params) => {

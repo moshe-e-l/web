@@ -13,10 +13,28 @@
     קוד !FAST MAST  *
   </div>
   <input type="text" [(ngModel)]="fastMastService.code" placeholder="הזינו קוד !FAST MAST">
-  <div *ngIf="isIncorrectCode" class="validationMesseg">קוד אינו נכון, אנא נסו שנית.</div>
 </div>
     <div class="buttons step-buttons text-left">
         <a (click)="GetUserDetailByFastMastCode()" class="btn submit" href="javascript:void(0)"
            id="continueBtn">המשך</a>
     </div>
 </div>
+
+
+<div *ngIf="popUpSubject" id="popup" class="overlay">
+    <div class="popup">
+      <div >
+        <h2>קוד אינו נכון</h2>
+      </div>
+      <a class="close" (click)="popUpSubject = null">&times;</a>
+      <div class="content">
+        <div>
+         אנא נסו שנית
+        </div>     
+        <div class="buttons step-buttons">
+          <a href="javascript:void(0)" (click)="popUpSubject = null" id="closePopup" class="btn cancel"
+            name="button">סגירה</a>
+        </div>
+      </div>
+    </div>
+  </div>

@@ -18,7 +18,9 @@
     <label *ngSwitchCase="'checkbox'" [attr.for]="question.key">{{question.label}}</label>  
   </div>
   <!-- [attr.checked]="form.controls[this.question.key].value" -->
- <div *ngIf="form.controls[this.question.key].touched">   
+ 
+  <!--  -->
+  <div *ngIf="form.controls[this.question.key].touched">   
     <div class="errorMessage validationMesseg" *ngIf="!isValid">{{question.validationMsg}}</div>
  </div>
 </div>

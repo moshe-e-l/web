@@ -10,9 +10,9 @@ import { GetJsonService } from '../../../services/get-json.service';
 })
 export class FastMastCodeComponent implements OnInit {
   EwaPost: EvaDataStructure = new EvaDataStructure();
-
+  popUpSubject : string;
   constructor(public fastMastService: FastMastService, private jsonService: GetJsonService) { }
-  isIncorrectCode: boolean;
+  
   ngOnInit() {
   }
 
@@ -23,7 +23,7 @@ export class FastMastCodeComponent implements OnInit {
                'MastApi_KeepItCity', 'fastMastValidtion');
     this.jsonService.sendData(data).subscribe(res => {     
       if (!res[0])   
-         this.isIncorrectCode = true;
+         this.popUpSubject = "IncorrectCode";
         else{
           this.fastMastService.FMuserDetails = res[0];
           this.fastMastService.activeStep = "details";

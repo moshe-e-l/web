@@ -58,7 +58,7 @@
                 </md-option>
               </md-autocomplete>
 
-              <div *ngIf="isValidCityName" class="validationMesseg">{{isValidCityNameMesseg | lang }}</div>
+              <!-- <div *ngIf="isValidCityName" class="validationMesseg">{{isValidCityNameMesseg | lang }}</div> -->
 
             </form>
 
@@ -135,10 +135,10 @@
             <div *ngIf="isValidPhoneMesseg" class="validationMesseg">{{isValidPhoneMesseg | lang}}</div> 
             <!-- <label class="label_accessibility" for="user_str_name">מספר הבית</label> -->
             <input [(ngModel)]="UserStreetName" type="text" placeholder="רחוב" id="user_str_name">
-            <div *ngIf="isValidUserStreetName" class="validationMesseg">{{isValidUserStreetNameMesseg | lang}}</div> 
+            <!-- <div *ngIf="isValidUserStreetName" class="validationMesseg">{{isValidUserStreetNameMesseg | lang}}</div>  -->
             <!-- <label class="label_accessibility" for="user_str_num">כתובת</label> -->
             <input [(ngModel)]="UserStreetNumber" type="text" placeholder="מספר הבית" id="user_str_num">
-            <div *ngIf="isValidUserStreetNumber" class="validationMesseg">{{isValidUserStreetNumberMesseg | lang}}</div> 
+            <!-- <div *ngIf="isValidUserStreetNumber" class="validationMesseg">{{isValidUserStreetNumberMesseg | lang}}</div>  -->
             <a href="javascript:void(0)" (click)="sendHazardReportImage()" class="custom_sub_btn btn1 cursorPointer" title="send" style="margin-left:0px">אישור</a>
           </div>
         </div>

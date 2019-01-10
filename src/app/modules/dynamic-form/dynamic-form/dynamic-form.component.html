@@ -1,6 +1,5 @@
 <div *ngIf="questions.length > 0">
     <form (ngSubmit)="onSubmit()" [formGroup]="form">
-   <!-- class="form-row" -->
    <div class="questions-wraper">
       <div *ngFor="let question of questions">
         <app-question [question]="question" [form]="form"></app-question>
@@ -11,9 +10,9 @@
         <div #captcha nbRecaptcha class="g-recaptcha"></div>
         <div *ngIf="isCaptchaNotValid" >אנא אשר שאינך רובוט</div>
      </div>
-<!-- class="form-row" -->
       <div class="submit-wrapper">
-        <button type="submit" [disabled]="!form.valid">המשך</button>
+        <button type="submit" >המשך</button>
+        <!-- [disabled]="!form.valid" -->
         <!-- <button type="submit">Check</button> -->
       </div>
     </form>
